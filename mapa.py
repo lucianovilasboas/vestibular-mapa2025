@@ -72,7 +72,7 @@ with col3:
    )
 
 with col4 :
-   filter = st.slider("Filtro", 1, 10, 5, 1)
+   filter = st.slider("📶 Filtro...", 1, 10, 5, 1)
 
 col2 = st.container()
 with col2:
