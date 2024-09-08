@@ -1,4 +1,3 @@
-from random import shuffle
 import streamlit as st 
 import pandas as pd 
 import plotly.express as px 
