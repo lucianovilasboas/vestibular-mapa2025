@@ -46,7 +46,7 @@ with col:
                             color="Total",
                             size="Total", 
                             color_continuous_scale=px.colors.cyclical.HSV, 
-                            size_max=50, zoom=6, title="Distribuição de Inscrições por Cidade")
+                            size_max=40, zoom=6, title="Distribuição de Inscrições por Cidade")
 
     # Configuração do mapa
     # fig.update_layout(mapbox_style="open-street-map")
@@ -99,7 +99,7 @@ with col2:
    fig = px.scatter_mapbox(df_filtered_g, lat="Cidade_Lat", lon="Cidade_Lon", hover_name="Cidade_UF", 
                            hover_data=["Total"], color="Total", size="Total", 
                            color_continuous_scale=px.colors.cyclical.HSV,
-                           size_max=40, zoom=6, title="Distribuição de Inscrições por Cidade")
+                           size_max=30, zoom=6, title="Distribuição de Inscrições por Cidade")
    # Adicionando setas que indicam a conexão entre a cidade de origem e o campus com curvas
    for i, row in df_filtered_g.iterrows():
        if row["Total"] >= filter:  # Verificação: só traçar as setas se Total for >= 4
