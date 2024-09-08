@@ -1,0 +1,16 @@
+# Ignore Python files
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.pyi
+*.pyw
+*.pyz
+*.pyzw
+
+# Ignore Jupyter Notebook files
+.ipynb_checkpoints/
+
+# Ignore Python virtual environment files
+venv/
+
