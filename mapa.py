@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px 
 import plotly.graph_objects as go
 import numpy as np
-from functions import ler_coordenadas, ler_dados
+from functions import ler_coordenadas, ler_dados, get_last_modified_file
 
 st.set_page_config(layout="wide")
 
@@ -11,7 +11,7 @@ df_ = ler_dados()
 df_mun_geo = ler_coordenadas()
 
 st.title('📊 Análise Geográfica de Inscrições - IFMG 2025')
-
+st.write(f"Ultima atualização: {get_last_modified_file()}" )
 
 st.header(f'🗺️ Mapa 1...', divider='rainbow')
 col = st.container()
