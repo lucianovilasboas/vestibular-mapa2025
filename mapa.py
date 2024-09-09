@@ -114,7 +114,7 @@ with col2:
                lon=curve_lon,
                lat=curve_lat,
                mode='lines',
-               line=dict(width=row["Total"] * 0.05, color='blue'),  # Espessura proporcional ao valor de 'Total'
+               line=dict(width=row["Total"] * 0.08, color='red'),  # Espessura proporcional ao valor de 'Total'
                # line=dict(width=.2, color='blue'),
                hoverinfo='text',
                hovertext=f'{row["Cidade_UF"]} → {row["Campus_UF"]} ({row["Total"]})',  # Informações no hover
