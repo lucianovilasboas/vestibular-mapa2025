@@ -118,7 +118,8 @@ with col2:
                # line=dict(width=.2, color='blue'),
                hoverinfo='text',
                hovertext=f'{row["Cidade_UF"]} → {row["Campus_UF"]} ({row["Total"]})',  # Informações no hover
-               showlegend=False
+               showlegend=False,
+               opacity=0.4
            ))
    # Configuração do estilo do mapa
    # fig.update_layout(mapbox_style="open-street-map")
