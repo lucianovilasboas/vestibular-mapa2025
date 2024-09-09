@@ -73,7 +73,7 @@ with col3:
    )
 
 with col4 :
-   filter = st.slider("📶 Filtro...", 1, 10, 5, 1)
+   filter = st.slider("📶 Filtro...", 0, 10, 5, 1)
 
 col2 = st.container()
 with col2:
@@ -102,25 +102,26 @@ with col2:
                            color_continuous_scale=px.colors.cyclical.HSV,
                            size_max=30, zoom=6, title="Distribuição de Inscrições por Cidade")
    # Adicionando setas que indicam a conexão entre a cidade de origem e o campus com curvas
-   for i, row in df_filtered_g.iterrows():
-       if row["Total"] >= filter:  # Verificação: só traçar as setas se Total for >= 4
-           # Gerando pontos curvados entre a cidade e o campus
-           curve_lat, curve_lon = generate_curve_points(row["Cidade_Lat"],
-                                                       row["Cidade_Lon"], 
-                                                       row["Campus_Lat"], 
-                                                       row["Campus_Lon"], 
-                                                       num_points=50)
-           fig.add_trace(go.Scattermapbox(
-               lon=curve_lon,
-               lat=curve_lat,
-               mode='lines',
-               line=dict(width=row["Total"] * 0.08, color='red'),  # Espessura proporcional ao valor de 'Total'
-               # line=dict(width=.2, color='blue'),
-               hoverinfo='text',
-               hovertext=f'{row["Cidade_UF"]} → {row["Campus_UF"]} ({row["Total"]})',  # Informações no hover
-               showlegend=False,
-               opacity=0.4
-           ))
+   if filter > 0:
+        for i, row in df_filtered_g.iterrows():
+            if row["Total"] >= filter:  # Verificação: só traçar as setas se Total for >= 4
+                # Gerando pontos curvados entre a cidade e o campus
+                curve_lat, curve_lon = generate_curve_points(row["Cidade_Lat"],
+                                                            row["Cidade_Lon"], 
+                                                            row["Campus_Lat"], 
+                                                            row["Campus_Lon"], 
+                                                            num_points=50)
+                fig.add_trace(go.Scattermapbox(
+                    lon=curve_lon,
+                    lat=curve_lat,
+                    mode='lines',
+                    line=dict(width=row["Total"] * 0.08, color='black'),  # Espessura proporcional ao valor de 'Total'
+                    # line=dict(width=.2, color='blue'),
+                    hoverinfo='text',
+                    hovertext=f'{row["Cidade_UF"]} → {row["Campus_UF"]} ({row["Total"]})',  # Informações no hover
+                    showlegend=False,
+                    opacity=0.6
+                ))
    # Configuração do estilo do mapa
    # fig.update_layout(mapbox_style="open-street-map")
    fig.update_layout(mapbox_style="carto-positron") 
