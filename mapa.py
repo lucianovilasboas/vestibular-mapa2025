@@ -124,7 +124,8 @@ with col2:
    # fig.update_layout(mapbox_style="open-street-map")
    fig.update_layout(mapbox_style="carto-positron") 
    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0}, 
-                     height=500, mapbox_center={"lat": -19.91018, "lon": -43.92657})
+                     height=700, 
+                     mapbox_center={"lat": -19.91018, "lon": -43.92657})
 
    fig.update_layout(showlegend=False)
        # Exibir gráfico
