@@ -14,56 +14,56 @@ st.write(f"Ultima atualização: {get_last_modified_file()}" )
 df_ = ler_dados()
 df_mun_geo = ler_coordenadas()
 
-st.header(f'🗺️ Mapa 1...', divider='rainbow')
-col = st.container()
+# st.header(f'🗺️ Mapa 1...', divider='rainbow')
+# col = st.container()
 campus_lista = df_["Campus_UF"].sort_values().unique() 
 
 
-with col:
-    campus = st.multiselect (
-    "📶 Campus...",
-        campus_lista, campus_lista,  
-        placeholder="Selecione o campus...",
-        key='options_col'
-    )
+# with col:
+#     campus = st.multiselect (
+#     "📶 Campus...",
+#         campus_lista, campus_lista,  
+#         placeholder="Selecione o campus...",
+#         key='options_col'
+#     )
 
-    df_filtered = df_[ df_['Campus_UF'].isin(campus)]
-    # df_filtered =  df_filtered[["CPF","Nome","Cidade","Campus","Curso","Cidade_UF","Campus_UF"]]
+#     df_filtered = df_[ df_['Campus_UF'].isin(campus)]
+#     # df_filtered =  df_filtered[["CPF","Nome","Cidade","Campus","Curso","Cidade_UF","Campus_UF"]]
 
 
-    by = ['Cidade_UF']
+#     by = ['Cidade_UF']
 
-    df_filtered_g =  df_filtered.groupby(by).count()[['Inscricao']].sort_values('Inscricao', ascending=False).reset_index()
-    df_filtered_g["Cidade_Lat"] = df_filtered_g["Cidade_UF"].apply(lambda c: df_mun_geo.loc[c]["latitude"] )
-    df_filtered_g["Cidade_Lon"] = df_filtered_g["Cidade_UF"].apply(lambda c: df_mun_geo.loc[c]["longitude"] )
-    df_filtered_g.rename(columns={"Inscricao":"Total"}, inplace=True)
+#     df_filtered_g =  df_filtered.groupby(by).count()[['Inscricao']].sort_values('Inscricao', ascending=False).reset_index()
+#     df_filtered_g["Cidade_Lat"] = df_filtered_g["Cidade_UF"].apply(lambda c: df_mun_geo.loc[c]["latitude"] )
+#     df_filtered_g["Cidade_Lon"] = df_filtered_g["Cidade_UF"].apply(lambda c: df_mun_geo.loc[c]["longitude"] )
+#     df_filtered_g.rename(columns={"Inscricao":"Total"}, inplace=True)
 
-    # Gerar mapa de dispersão
-    fig = px.scatter_mapbox(df_filtered_g, 
-                            lat="Cidade_Lat", 
-                            lon="Cidade_Lon", 
-                            hover_name=by[0], 
-                            hover_data=["Total"], 
-                            color="Total",
-                            size="Total", 
-                            color_continuous_scale=px.colors.cyclical.HSV, 
-                            size_max=40, zoom=6, title="Distribuição de Inscrições por Cidade")
+#     # Gerar mapa de dispersão
+#     fig = px.scatter_mapbox(df_filtered_g, 
+#                             lat="Cidade_Lat", 
+#                             lon="Cidade_Lon", 
+#                             hover_name=by[0], 
+#                             hover_data=["Total"], 
+#                             color="Total",
+#                             size="Total", 
+#                             color_continuous_scale=px.colors.cyclical.HSV, 
+#                             size_max=40, zoom=6, title="Distribuição de Inscrições por Cidade")
 
-    # Configuração do mapa
-    # fig.update_layout(mapbox_style="open-street-map")
-    fig.update_layout(mapbox_style="carto-positron") 
-    fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0}, height=500, 
-                      mapbox_center={"lat": -19.91018, "lon": -43.92657})
+#     # Configuração do mapa
+#     # fig.update_layout(mapbox_style="open-street-map")
+#     fig.update_layout(mapbox_style="carto-positron") 
+#     fig.update_layout(margin={"r":0,"t":0,"l":0,"b":0}, height=500, 
+#                       mapbox_center={"lat": -19.91018, "lon": -43.92657})
     
-    fig.update_layout(showlegend=False)
-    # Exibir gráfico
-    col.plotly_chart(fig, use_container_width=True)
+#     fig.update_layout(showlegend=False)
+#     # Exibir gráfico
+#     col.plotly_chart(fig, use_container_width=True)
 
 
 
-st.header(f'🌐 Mapa 2..', divider='rainbow')
+st.header(f'🌐 De onde vem nossos candidatos?!...', divider='rainbow')
 col3, col4 = st.columns(2)
-campus_lista_default = campus_lista[:5]
+campus_lista_default = campus_lista
 with col3:
    campus2 = st.multiselect (
     "📶 Campus...",
@@ -73,7 +73,7 @@ with col3:
    )
 
 with col4 :
-   filter = st.slider("📶 Filtro...", 0, 10, 5, 1)
+   filter = st.slider("📶 Filtro...", 0, 10, 2, 1)
 
 col2 = st.container()
 with col2:
