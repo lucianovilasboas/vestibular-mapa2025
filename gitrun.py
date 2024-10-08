@@ -19,7 +19,7 @@ if __name__ == "__main__":
         # Adiciona todos os arquivos modificados e não rastreados
         # repo.git.add(all=True)
 
-        # command: git add ./dados/processed/all_data.xlsx ./dados/2025-1*
+        # command: git add ./dados/processado.xlsx
         repo.git.add(["./dados/processado.xlsx"])
 
         # Faz o commit
@@ -38,7 +38,8 @@ if __name__ == "__main__":
         # Printar os arquivos comitados após o push
         if comitados:
             for file in comitados:
-                logger.info("Arquivo comitado: %s", file)    
+                logger.info(f"Arquivo comitado: {file}")
+                print(f"Arquivo comitado: {file}")    
 
     else:
         logger.info("Não há mudanças para comitar.")

@@ -110,12 +110,12 @@ with col2:
                                                             row["Cidade_Lon"], 
                                                             row["Campus_Lat"], 
                                                             row["Campus_Lon"], 
-                                                            num_points=50)
+                                                            num_points=10)
                 fig.add_trace(go.Scattermapbox(
                     lon=curve_lon,
                     lat=curve_lat,
                     mode='lines',
-                    line=dict(width=row["Total"] * 0.08, color='black'),  # Espessura proporcional ao valor de 'Total'
+                    line=dict(width=row["Total"] * 0.07, color='black'),  # Espessura proporcional ao valor de 'Total'
                     # line=dict(width=.2, color='blue'),
                     hoverinfo='text',
                     hovertext=f'{row["Cidade_UF"]} → {row["Campus_UF"]} ({row["Total"]})',  # Informações no hover
